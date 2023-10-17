@@ -2,8 +2,8 @@
 
 class CuentaBancaria
 {
-
     #region ATRIBUTOS
+    public $id;
     public $nombre;
     public $apellido;
     public $tipoDocumento;
@@ -16,10 +16,10 @@ class CuentaBancaria
     #endregion
 
     #region CONSTRUCT
-
-    public function __construct($nombre, $apellido, $tipoDocumento, $nroDocumento, $email, $tipoCuenta, $moneda, $saldoInicial = 0)
+    public function __construct($id,$nombre, $apellido, $tipoDocumento, $nroDocumento, $email, $tipoCuenta, $moneda, $saldoInicial = 0)
     {
         $this->setNombre($nombre);
+        $this->setId($id);
         $this->setApellido($apellido);
         $this->setTipoDocumento($tipoDocumento);
         $this->setNroDocumento($nroDocumento);
@@ -28,11 +28,23 @@ class CuentaBancaria
         $this->setMoneda($moneda);
         $this->setSaldoInicial($saldoInicial);
     }
-
-
     #endregion
 
     #region SETTERS
+
+    public function setId($id)
+    {
+        if(is_numeric($id) && $id >0)
+        {
+            $this->id = $id;
+        }
+        else
+        {
+            http_response_code(400);
+            echo 'Error! Id no válido.';
+            exit();
+        }
+    }
 
     public function setNombre($nombre)
     {
@@ -41,7 +53,9 @@ class CuentaBancaria
             $this->nombre = $nombre;
         }
         else{
-            echo "Error! Nombre no válido";
+            http_response_code(400);
+            echo 'Error! Nombre no válido.';
+            exit();
         }
     }
 
@@ -53,22 +67,24 @@ class CuentaBancaria
         }
         else
         {
-            echo "Error! Apellido no válido";
+            http_response_code(400);
+            echo 'Error! Apellido no válido.';
+            exit();
         }
     }
 
-    public function setTipoDocumento($tipoDocumento)
-    {
-        //Valido el tipo de documento
-        if($tipoDocumento === 'DNI' || $tipoDocumento === 'LC' ||  $tipoDocumento === 'LE') //LC = LIBRETA CIVICA. LE = LIBRETA ENRROLAMIENTO
+    public function setTipoDocumento($tipoDocumento) {
+        // Validación del tipo de documento
+        if ($tipoDocumento === 'DNI' || $tipoDocumento === 'CI' || $tipoDocumento === 'Pasaporte')
         {
             $this->tipoDocumento = $tipoDocumento;
-        }
-        else
-        {
-            echo "Error! Tipo de docuemento no válido";
+        } else {
+            http_response_code(400);
+            echo 'Error! Documento no válido.';
+            exit();
         }
     }
+
 
     public function setNroDocumento($nroDocumento)
     {
@@ -78,7 +94,9 @@ class CuentaBancaria
         }
         else
         {
-            echo "Error! Número de documento no válido";
+            http_response_code(400);
+            echo 'Error! numero de documento no válido.';
+            exit();
         }
     }
 
@@ -90,7 +108,9 @@ class CuentaBancaria
         }
         else
         {
-            echo "Error! Mail no válido";
+            http_response_code(400);
+            echo 'Error! Email no válido.';
+            exit();
         }
     }
 
@@ -102,7 +122,9 @@ class CuentaBancaria
         }
         else
         {
-            echo "Error! Tipo de cuenta no válida";
+            http_response_code(400);
+            echo 'Error! Tipo de cuenta no válido.';
+            exit();
         }      
     }
 
@@ -113,7 +135,9 @@ class CuentaBancaria
             $this->moneda = $moneda;
         }
         else{
-            echo "Error! Moneda no válida";
+            http_response_code(400);
+            echo 'Error! Moneda no válida.';
+            exit();
         }
     }
 
@@ -125,17 +149,21 @@ class CuentaBancaria
         }
         else
         {
-            echo "Error: Saldo inicial no válido";
+            http_response_code(400);
+            echo 'Error! Saldo inicial no válido.';
+            exit();
         }
     }
-
-
 
 
     #endregion
 
     #region GETTERS
 
+    public function getId()
+    {
+        return $this->id;
+    }
     public function getNombre()
     {
         return $this->nombre;
@@ -178,7 +206,7 @@ class CuentaBancaria
 
     #endregion
 
-    #region MÉTODOS-BUSCAR
+    #region MÉTODOS
     public function Equals($obj): bool {
         if (get_class($obj) == "CuentaBancaria" &&
             $obj->nombre === $this->nombre &&
@@ -244,8 +272,6 @@ class CuentaBancaria
 
         return false;
     }
-    #endregion
-
 
     public static function ActualizarArray($cuenta,$action):string
     {
@@ -292,7 +318,7 @@ class CuentaBancaria
         return $message;
     }
 
-
+    #endregion
 
     #region JSON
     public static function LeerJSON($filename = "banco.json"): array
@@ -317,6 +343,7 @@ class CuentaBancaria
                     foreach ($cuentasFromJson as $cuenta) {
                         // Creo una nueva instancia de la clase CuentaBancaria y agrego la cuenta al array $cuentas
                         array_push($cuentas, new CuentaBancaria(
+                            $cuenta["id"],
                             $cuenta["nombre"],
                             $cuenta["apellido"],
                             $cuenta["tipoDocumento"],
@@ -334,7 +361,7 @@ class CuentaBancaria
             }
         } catch (\Throwable $th) {
             // En caso de que ocurra una excepción, imprime un mensaje de error
-            echo "Hubo un Error al leer el archivo";
+            echo "Cuenta nueva";
         } finally {
             // Devuelvo el array de cuentas bancarias, ya sea vacío o con las cuentas leídas del archivo
             return  $cuentas;
@@ -370,12 +397,5 @@ class CuentaBancaria
     }
     #endregion
 
-
-
-
-
 }
-
-
-
 ?>

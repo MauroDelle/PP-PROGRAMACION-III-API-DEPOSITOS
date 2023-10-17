@@ -1,0 +1,13 @@
+[
+    {
+        "id": "845511",
+        "nombre": "Mauro",
+        "apellido": "Delle",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "43785741",
+        "email": "mauro@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "$",
+        "saldoInicial": "200"
+    }
+]
