@@ -353,6 +353,7 @@ class CuentaBancaria
             {
                 $monedaSaldo .= "Moneda: " . $cuenta->moneda . ", Saldo: " . $cuenta->saldoInicial;
                 $tipoCuentaCorrecto = true;
+                break; // Se encontró la cuenta, se puede salir del bucle
             }
         }
 

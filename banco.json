@@ -8,6 +8,39 @@
         "email": "mauro@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": 800
+        "saldoInicial": 2340
+    },
+    {
+        "id": "809598",
+        "nombre": "Esteban",
+        "apellido": "Lamothe",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "35674598",
+        "email": "lamothe@gmail.com",
+        "tipoCuenta": "CC",
+        "moneda": "U$S",
+        "saldoInicial": "1500"
+    },
+    {
+        "id": "070825",
+        "nombre": "Karina",
+        "apellido": "Palmer",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "20467834",
+        "email": "karina@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "$",
+        "saldoInicial": 12390
+    },
+    {
+        "id": "985739",
+        "nombre": "Magnus",
+        "apellido": "Carlsen",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "25476879",
+        "email": "magnus@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "U$S",
+        "saldoInicial": "10500"
     }
 ]
