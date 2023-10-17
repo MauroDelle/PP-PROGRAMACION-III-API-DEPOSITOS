@@ -385,6 +385,20 @@ class CuentaBancaria
 
     #endregion
 
+    public static function obtenerCuentaPorId($idCuenta)
+    {
+        $cuentas = self::LeerJSON();
+        foreach($cuentas as $cuenta)
+        {
+            if($cuenta->getId() === $idCuenta)
+            {
+                return $cuenta;
+            }
+        }
+
+        return null;
+    }
+
 
     #region JSON
     public static function LeerJSON($filename = "banco.json"): array

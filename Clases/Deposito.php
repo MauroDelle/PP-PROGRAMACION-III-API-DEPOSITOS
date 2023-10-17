@@ -9,21 +9,29 @@ class Deposito
     public $_monto;
     public $_moneda;
     public $_idCuenta;
+
+    public $_tipoCuenta;
     #endregion
 
     #region CONSTRUCT
-    public function __construct($id, $fecha, $monto, $moneda, $idCuenta)
+    public function __construct($id, $fecha, $monto, $moneda, $idCuenta,$tipoCuenta = null)
     {
         $this->_id = $id;
         $this->_fecha = $fecha;
         $this->_monto = $monto;
         $this->_moneda = $moneda;
         $this->_idCuenta = $idCuenta;
+        $this->_tipoCuenta = $tipoCuenta;
     }
 
     #endregion
 
     #region GETTERS
+
+    public function getTipoCuenta()
+    {
+        return $this->_tipoCuenta;
+    }
 
     public function getId()
     {
@@ -80,6 +88,20 @@ class Deposito
         $this->_id = $id;
     }
 
+    public function setTipoCuenta($tipoCuenta)
+    {
+        if($tipoCuenta === 'CA' || $tipoCuenta === 'CC')
+        {
+            $this->_tipoCuenta = $tipoCuenta;
+        }
+        else
+        {
+            http_response_code(400);
+            echo 'Error! Tipo de cuenta no válido.';
+            exit();
+        }      
+    }
+
     #endregion
 
     #region MÉTODOS
@@ -106,7 +128,7 @@ class Deposito
 
     public static function obtenerFechaActual()
     {
-        return date('Y-m-d H:i:s');
+        return date('Y-m-d');
     }
 
     public static function guardarDepositoEnJSON($deposito, $filename = "deposito.json"): bool
@@ -165,7 +187,8 @@ class Deposito
                             $deposito["_fecha"],
                             $deposito["_monto"],
                             $deposito["_moneda"],
-                            $deposito["_idCuenta"]
+                            $deposito["_idCuenta"],
+                            $deposito["_tipoCuenta"]
                         ));
                     }
                 }
@@ -181,12 +204,6 @@ class Deposito
             return $depositos;
         }
     }
-
-
-
-    #endregion
-
-    
 
     public static function Depositar($tipoCuenta, $nroCuenta, $moneda, $importe, $imagen)
     {
@@ -212,8 +229,9 @@ class Deposito
                     $monto = $importe;
                     $nuevaMoneda = $moneda;
                     $idCuenta = $cuenta->getID();
+                    $tipoCuenta = $cuenta->getTipoCuenta();
                     
-                    $registroDeposito = new Deposito($nuevoIdDeposito, $fechaActual, $monto, $nuevaMoneda, $idCuenta);
+                    $registroDeposito = new Deposito($nuevoIdDeposito, $fechaActual, $monto, $nuevaMoneda, $idCuenta,$tipoCuenta);
                     
                     $depositos = Deposito::LeerDepositoJSON();
 
@@ -231,6 +249,96 @@ class Deposito
             }
         }
     }
+
+
+    #endregion
+
+    
+    #region METODOS-CONSULTA-GET
+
+    /*a- El total depositado (monto) por tipo de cuenta y moneda en un día en
+        particular (se envía por parámetro), si no se pasa fecha, se muestran las del día
+        anterior.
+    */
+
+    public static function calcularTotalPorTipoCuentaYMoneda($tipoCuenta,$moneda,$fecha = null)
+    {
+        // si no tengo fecha, calculo la del dia anterior
+        if($fecha === null)
+        {
+            $fecha = date('Y-m-d', strtotime('yesterday'));
+        }
+
+        $depositos = self::LeerDepositoJSON();
+
+        //inicializo el total;
+        $total = 0;
+
+
+        foreach($depositos as $deposito)
+        {
+            $fechaDepositoJson = $deposito->_fecha;
+            $fechaDepositoJson = DateTime::createFromFormat('Y-m-d H:i:s', $fechaDepositoJson);
+            $fechaDepositoJson = $fechaDepositoJson->format('Y-m-d');
+
+            if($fechaDepositoJson === $fecha && $deposito->_tipoCuenta === $tipoCuenta && $deposito->_moneda === $moneda)
+            {
+                $total += $deposito->_monto;
+            }
+        }
+
+         // Devolver el total
+         return $total;
+    }
+
+    public static function listarDepositosPorUsuario($idCuenta)
+    {
+        $depositos = self::LeerDepositoJSON();
+        $resultados = array();
+
+        foreach($depositos as $deposito)
+        {
+            if($deposito->getIdCuenta() === $idCuenta)
+            {
+                $resultados[] = $deposito;
+            }
+        }
+        return $resultados;
+    }
+
+
+    public static function listarDepositosEntreFechasORdenadasPorNombre($fechaInicio, $fechaFin)
+    {
+        $depositos =self::LeerDepositoJSON();
+        $resultados =  array();
+
+        foreach($depositos as $deposito)
+        {
+            if($deposito->getFecha() >= $fechaInicio && $deposito->getFecha() <= $fechaFin)
+            {
+                $cuentaBancaria = CuentaBancaria::obtenerCuentaPorId($deposito->getIdCuenta());
+
+                if($cuentaBancaria)
+                {
+                    $nombreCuenta = $cuentaBancaria->nombre;
+                    $deposito->_nombre = $nombreCuenta;
+                    $resultados[] = $deposito;
+                }
+            }
+        }
+        usort($resultados, function ($a, $b) {
+            return strcmp($a->_nombre, $b->_nombre);
+        });
+
+        return $resultados;
+    }
+
+
+    #endregion
+
+
+
+
 
 
 

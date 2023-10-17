@@ -2,7 +2,7 @@
 
 return [
     'GET'=>[
-        'Carga' => 'Pizzeria-Parte-01/PizzaCarga.php',
+        'Movimientos' => 'Clases/ConsultaMovimientos.php',
     ],
     'POST' => [
         'Alta' => 'Clases/CuentaAlta.php',
