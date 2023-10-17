@@ -21,18 +21,10 @@ include_once 'CuentaBancaria.php';
                 // Generar un número de cuenta autoincremental de 6 dígitos
                 $numeroCuenta = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
 
-                // Combinar número de cuenta y tipo de cuenta para la identificación de la imagen
-                $imagenIdentificacion = $numeroCuenta . $tipoCuenta;      
-
                 // Crear una instancia de la clase CuentaBancaria
                 $cuenta = new CuentaBancaria($numeroCuenta, $nombre, $apellido, $tipoDocumento, $nroDocumento, $email, $tipoCuenta, $moneda, $saldoInicial);
-
                 // Guardar la cuenta en el archivo "banco.json"
-                $message = CuentaBancaria::ActualizarArray($cuenta, 'add');
-
-                // Guardar la imagen en la carpeta correspondiente
-                $rutaImagen = 'ImagenesDeCuentas/2023/' . $imagenIdentificacion . '.jpg';
-                move_uploaded_file($imagen['tmp_name'], $rutaImagen);
+                $message = CuentaBancaria::ActualizarArray($cuenta, 'add',$imagen);
 
                 // Puedes mostrar un mensaje de éxito o redirigir a una página de confirmación
                 echo "Cuenta creada exitosamente. $message";

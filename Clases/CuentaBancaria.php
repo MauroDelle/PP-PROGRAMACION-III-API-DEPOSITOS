@@ -273,7 +273,7 @@ class CuentaBancaria
         return false;
     }
 
-    public static function ActualizarArray($cuenta,$action):string
+    public static function ActualizarArray($cuenta,$action,$imagen):string
     {
 
         // Ruta del archivo JSON
@@ -287,6 +287,7 @@ class CuentaBancaria
         if (!$cuenta->BuscarEnArray($arrayDeCuentas)) {
             if ($action == "add") {
                 array_push($arrayDeCuentas, $cuenta);
+                $cuenta->guardarImagen($imagen);
                 $message = "La cuenta no existe, la añado.<br>";
             }
         }else
@@ -316,6 +317,22 @@ class CuentaBancaria
         self::GuardarEnJSON($arrayDeCuentas, $filePath);
         // Devuelvo el mensaje
         return $message;
+    }
+
+    public function guardarImagen($imagen) {
+
+        if($imagen != NULL)
+        {
+            // Combinar número de cuenta y tipo de cuenta para la identificación de la imagen
+            $imagenIdentificacion = $this->getId() . $this->getTipoCuenta();
+            $rutaImagen = 'ImagenesDeCuentas/2023/' . $imagenIdentificacion . '.jpg';
+            move_uploaded_file($imagen['tmp_name'], $rutaImagen);
+        }
+        else{
+            http_response_code(400);
+            echo 'Error! Imagen no válida.';
+            exit();
+        }
     }
 
     #endregion

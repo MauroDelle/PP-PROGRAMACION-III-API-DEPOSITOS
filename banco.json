@@ -1,6 +1,6 @@
 [
     {
-        "id": "845511",
+        "id": "564035",
         "nombre": "Mauro",
         "apellido": "Delle",
         "tipoDocumento": "DNI",
@@ -8,6 +8,6 @@
         "email": "mauro@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": "200"
+        "saldoInicial": 800
     }
 ]
