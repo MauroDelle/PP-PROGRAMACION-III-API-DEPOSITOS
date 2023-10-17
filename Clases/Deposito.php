@@ -333,6 +333,39 @@ class Deposito
         return $resultados;
     }
 
+    public static function obtenerDepositosPorTipoCuenta($tipoCuenta)
+    {
+        $depositos = self::LeerDepositoJSON();
+
+        $depList = array();
+
+        foreach($depositos as $deposito)
+        {
+            if($deposito !== null && $deposito->_tipoCuenta === $tipoCuenta)
+            {
+                $depList[] = $deposito;
+            }
+        }
+        return $depList;
+    }
+
+    public static function obtenerDepositosPorMoneda($moneda)
+    {
+        $depositos = self::LeerDepositoJSON();
+
+        $depList = array();
+
+        foreach($depositos as $deposito)
+        {
+            if($deposito->_moneda === $moneda)
+            {
+                $depList[] = $deposito;
+            }
+        }
+
+        return $depList;
+    }
+
 
     #endregion
 

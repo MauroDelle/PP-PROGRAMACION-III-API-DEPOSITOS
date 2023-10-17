@@ -23,11 +23,11 @@
     },
     {
         "id": "070825",
-        "nombre": "Karina",
-        "apellido": "Palmer",
+        "nombre": "Pepito",
+        "apellido": "Perez",
         "tipoDocumento": "DNI",
-        "nroDocumento": "20467834",
-        "email": "karina@gmail.com",
+        "nroDocumento": "40879678",
+        "email": "carlos@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
         "saldoInicial": 12440

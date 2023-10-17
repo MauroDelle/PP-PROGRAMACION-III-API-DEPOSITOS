@@ -11,7 +11,7 @@ return [
     ],
     'PUT' =>
     [
-        'ModificarVenta' => 'ModificarVenta.php',
+        'Modificar' => 'Clases/ModificarCuenta.php',
     ],
     'DELETE' =>
     [

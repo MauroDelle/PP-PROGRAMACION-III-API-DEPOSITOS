@@ -205,8 +205,22 @@ class CuentaBancaria
 
 
     #endregion
-
+    
     #region MÉTODOS
+    public static function obtenerCuentaPorId($idCuenta)
+    {
+        $cuentas = self::LeerJSON();
+        foreach($cuentas as $cuenta)
+        {
+            if($cuenta->getId() === $idCuenta)
+            {
+                return $cuenta;
+            }
+        }
+
+        return null;
+    }
+
     public function Equals($obj): bool {
         if (get_class($obj) == "CuentaBancaria" &&
             $obj->nombre === $this->nombre &&
@@ -385,20 +399,47 @@ class CuentaBancaria
 
     #endregion
 
-    public static function obtenerCuentaPorId($idCuenta)
+
+    #region METODO-PUNTO-5
+
+    public static function ModificarCuenta($tipoCuenta, $nroCuenta, $nuevosDatos)
     {
         $cuentas = self::LeerJSON();
+
+        $cuentaEncontrada = false;
+
         foreach($cuentas as $cuenta)
         {
-            if($cuenta->getId() === $idCuenta)
+            if($cuenta->getTipoCuenta() === $tipoCuenta && $cuenta->getId() === $nroCuenta)
             {
-                return $cuenta;
+                //Ahora modifico todos los datos de la cuenta con los nuevos datos;
+                foreach($nuevosDatos as $key => $value)
+                {
+                    if(property_exists($cuenta, $key) && $key !== '_saldo')
+                    {
+                        $cuenta->$key = $value;
+                    }
+                }
+                $cuentaEncontrada = true;
+                break;
             }
         }
 
-        return null;
+        if($cuentaEncontrada)
+        {
+            self::GuardarEnJSON($cuentas);
+            return 'Cuenta modificada con éxito';
+        }
+        else
+        {
+            return 'No existe una cuenta con el tipo y número de cuenta proporcionados';
+        }
     }
 
+
+
+
+    #endregion
 
     #region JSON
     public static function LeerJSON($filename = "banco.json"): array

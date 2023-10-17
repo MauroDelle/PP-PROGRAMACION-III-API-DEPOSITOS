@@ -37,6 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         var_dump($listadoDepositos);
     }
+    else if(isset($_GET["tipoCuenta"]))
+    {
+        $tipoCuenta = $_GET["tipoCuenta"];
+
+        $listadoTipoCuenta = Deposito::obtenerDepositosPorTipoCuenta($tipoCuenta);
+
+        var_dump($listadoTipoCuenta);
+    }
+    else if(isset($_GET["moneda"]))
+    {
+        $moneda = $_GET["moneda"];
+
+        $listadoPorMoneda = Deposito::obtenerDepositosPorMoneda( $moneda );
+
+        var_dump($listadoPorMoneda);
+    }
     
 } else {
     echo "Método de solicitud incorrecto. Debe ser una solicitud GET.";
