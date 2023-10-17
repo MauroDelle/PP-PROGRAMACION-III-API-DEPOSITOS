@@ -6,7 +6,7 @@ return [
     ],
     'POST' => [
         'Alta' => 'Clases/CuentaAlta.php',
-        'Venta' => 'Pizzeria-Parte-02/AltaVenta.php'
+        'Consulta' => 'Clases/ConsultarCuenta.php'
     ],
     'PUT' =>
     [

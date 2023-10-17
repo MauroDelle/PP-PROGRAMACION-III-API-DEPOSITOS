@@ -337,6 +337,54 @@ class CuentaBancaria
 
     #endregion
 
+    #region MÉTODO-PUNTO-2
+
+    public static function consultarCuenta($_tipoCuenta,$_nroCuenta)
+    {
+        //primero obtengo las cuentas bancarias desde el json
+        $cuentas = self::LeerJSON();
+        $monedaSaldo = '';
+        $tipoCuentaCorrecto = false;
+
+        //Busco la cuenta que coincida con el tipo y número de cuenta
+        foreach($cuentas as $cuenta)
+        {
+            if($cuenta->tipoCuenta === $_tipoCuenta && $cuenta->getId() === $_nroCuenta)
+            {
+                $monedaSaldo .= "Moneda: " . $cuenta->moneda . ", Saldo: " . $cuenta->saldoInicial;
+                $tipoCuentaCorrecto = true;
+            }
+        }
+
+        if($tipoCuentaCorrecto)
+        {
+            return $monedaSaldo;
+        }
+        else
+        {
+            $existeNumeroCuenta = false;
+            foreach ($cuentas as $cuenta) {
+                if ($cuenta->id === $_nroCuenta) {
+                    $existeNumeroCuenta = true;
+                    break;
+                }
+        }
+
+        if($existeNumeroCuenta)
+        {
+            return "Tipo de cuenta Incorrecto";
+        }
+        else{
+            return "No existe la combinación de número y tipo de cuenta";
+
+        }
+        }
+    }
+
+
+    #endregion
+
+
     #region JSON
     public static function LeerJSON($filename = "banco.json"): array
     {
