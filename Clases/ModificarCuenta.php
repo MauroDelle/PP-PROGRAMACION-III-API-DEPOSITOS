@@ -1,7 +1,6 @@
 <?php
 require_once 'CuentaBancaria.php';
 
-var_dump($_POST);
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // Obtener los datos del cuerpo de la solicitud PUT
     $putData = file_get_contents("php://input");

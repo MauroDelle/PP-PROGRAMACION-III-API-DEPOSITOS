@@ -399,7 +399,6 @@ class CuentaBancaria
 
     #endregion
 
-
     #region METODO-PUNTO-5
 
     public static function ModificarCuenta($tipoCuenta, $nroCuenta, $nuevosDatos)

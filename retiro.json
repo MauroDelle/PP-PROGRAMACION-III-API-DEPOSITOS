@@ -1,0 +1,42 @@
+[
+    {
+        "_id": 1,
+        "_fecha": "2023-10-18",
+        "_monto": "60",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "564035",
+        "_moneda": "$"
+    },
+    {
+        "_id": 2,
+        "_fecha": "2023-10-18",
+        "_monto": "60",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "564035",
+        "_moneda": "$"
+    },
+    {
+        "_id": 3,
+        "_fecha": "2023-10-18",
+        "_monto": "60",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "564035",
+        "_moneda": "$"
+    },
+    {
+        "_id": 4,
+        "_fecha": "2023-10-18",
+        "_monto": "60",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "564035",
+        "_moneda": "$"
+    },
+    {
+        "_id": 5,
+        "_fecha": "2023-10-18",
+        "_monto": "1700",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "564035",
+        "_moneda": "$"
+    }
+]

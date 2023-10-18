@@ -9,7 +9,6 @@ class Deposito
     public $_monto;
     public $_moneda;
     public $_idCuenta;
-
     public $_tipoCuenta;
     #endregion
 
@@ -105,8 +104,6 @@ class Deposito
     #endregion
 
     #region MÉTODOS
-
-
     public static function obtenerNuevoIdDeposito()
     {
         $file = 'deposito.json';
@@ -252,7 +249,6 @@ class Deposito
 
 
     #endregion
-
     
     #region METODOS-CONSULTA-GET
 
@@ -368,11 +364,5 @@ class Deposito
 
 
     #endregion
-
-
-
-
-
-
 
 }
