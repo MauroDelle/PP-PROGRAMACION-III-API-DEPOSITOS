@@ -1,5 +1,8 @@
 <?php
 
+require_once 'Retiro.php';
+
+
 class CuentaBancaria
 {
     #region ATRIBUTOS
@@ -516,6 +519,15 @@ class CuentaBancaria
         }
     }
     #endregion
+
+
+    public static function AjustarCuenta($numeroTransaccion, $motivo)
+    {
+        
+    }
+    
+
+
 
 }
 ?>
