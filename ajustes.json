@@ -1,0 +1,30 @@
+[
+    {
+        "_idAjuste": 1,
+        "_tipoTransaccion": "deposito",
+        "_idDepositoRetiro": "2",
+        "_motivo": "modificando",
+        "_monto": "2"
+    },
+    {
+        "_idAjuste": 2,
+        "_tipoTransaccion": "retiro",
+        "_idDepositoRetiro": "2",
+        "_motivo": "modificando saldo",
+        "_monto": "2"
+    },
+    {
+        "_idAjuste": 3,
+        "_tipoTransaccion": "deposito",
+        "_idDepositoRetiro": "3",
+        "_motivo": "modificando saldo",
+        "_monto": "10"
+    },
+    {
+        "_idAjuste": 4,
+        "_tipoTransaccion": "deposito",
+        "_idDepositoRetiro": "3",
+        "_motivo": "modificando saldo",
+        "_monto": "10"
+    }
+]

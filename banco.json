@@ -8,7 +8,7 @@
         "email": "mauro@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": 0
+        "saldoInicial": 3000
     },
     {
         "id": "809598",
@@ -19,7 +19,7 @@
         "email": "lamothe@gmail.com",
         "tipoCuenta": "CC",
         "moneda": "U$S",
-        "saldoInicial": "1500"
+        "saldoInicial": 1500
     },
     {
         "id": "070825",
@@ -30,7 +30,7 @@
         "email": "carlos@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": 12440
+        "saldoInicial": 12512
     },
     {
         "id": "985739",
@@ -41,6 +41,6 @@
         "email": "magnus@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "U$S",
-        "saldoInicial": 10550
+        "saldoInicial": 10530
     }
 ]

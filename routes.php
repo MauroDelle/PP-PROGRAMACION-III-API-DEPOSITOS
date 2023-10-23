@@ -8,7 +8,8 @@ return [
         'Alta' => 'Clases/CuentaAlta.php',
         'Consulta' => 'Clases/ConsultarCuenta.php',
         'Deposito' => 'Clases/DepositoCuenta.php',
-        'Extraccion'=> 'Clases/RetiroCuenta.php'
+        'Extraccion'=> 'Clases/RetiroCuenta.php',
+        'Ajuste'=> 'Clases/AjusteCuenta.php'
     ],
     'PUT' =>
     [

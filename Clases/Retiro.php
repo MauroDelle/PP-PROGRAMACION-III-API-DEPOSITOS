@@ -6,9 +6,9 @@ class Retiro
     public $_id;
     public $_fecha;
     public $_monto;
+    public $_moneda;
     public $_tipoCuenta;
     public $_nroCuenta;
-    public $_moneda;
 
     public function __construct($id, $fecha, $monto, $tipoCuenta, $nroCuenta, $moneda)
     {

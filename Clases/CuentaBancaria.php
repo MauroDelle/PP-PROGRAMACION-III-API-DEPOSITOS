@@ -518,14 +518,10 @@ class CuentaBancaria
             return $success;
         }
     }
+
+
     #endregion
 
-
-    public static function AjustarCuenta($numeroTransaccion, $motivo)
-    {
-        
-    }
-    
 
 
 

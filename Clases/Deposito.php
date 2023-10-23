@@ -8,8 +8,8 @@ class Deposito
     public $_fecha;
     public $_monto;
     public $_moneda;
-    public $_idCuenta;
     public $_tipoCuenta;
+    public $_idCuenta;
     #endregion
 
     #region CONSTRUCT
@@ -247,7 +247,7 @@ class Deposito
         }
     }
 
-
+ 
     #endregion
     
     #region METODOS-CONSULTA-GET
