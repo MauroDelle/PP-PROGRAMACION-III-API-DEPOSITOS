@@ -19,7 +19,4 @@ require_once 'Ajuste.php';
         echo "Método de solicitud incorrecto. Debe ser una solicitud POST.";
     }
 
-
-
-
 ?>

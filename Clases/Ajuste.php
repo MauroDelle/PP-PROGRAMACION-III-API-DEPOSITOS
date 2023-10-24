@@ -3,7 +3,6 @@ require_once 'CuentaBancaria.php';
 require_once 'Deposito.php';
 require_once 'Retiro.php';
 
-
 class Ajuste
 {
     public $_idAjuste;
@@ -134,7 +133,7 @@ class Ajuste
      * @param //ajusteMonto The parameter "ajusteMonto" represents the amount of the adjustment to be made.
      * It is a numeric value that can be positive or negative, depending on whether it is a deposit or a
      * withdrawal.
-     * @param //motivo The "motivo" parameter is a string that represents the reason or explanation for the
+     * @param string $motivo The "motivo" parameter is a string that represents the reason or explanation for the
      * adjustment being made. It could be a description of the issue or any relevant information related to
      * the adjustment.
      * 
@@ -236,8 +235,6 @@ class Ajuste
     }
 
 
-
-
     /**
      * The function "LeerAjusteJSON" reads the content of a JSON file and returns an array of objects
      * representing the settings.
@@ -333,8 +330,7 @@ class Ajuste
     }
     
     #endregion
-    
-    
+        
     
 }
 ?>

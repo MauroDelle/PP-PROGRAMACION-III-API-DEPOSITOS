@@ -8,7 +8,8 @@
         "email": "mauro@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": 3000
+        "saldoInicial": 7000,
+        "_dadoDeBaja": true
     },
     {
         "id": "809598",
@@ -19,7 +20,8 @@
         "email": "lamothe@gmail.com",
         "tipoCuenta": "CC",
         "moneda": "U$S",
-        "saldoInicial": 1500
+        "saldoInicial": 1500,
+        "_dadoDeBaja": false
     },
     {
         "id": "070825",
@@ -30,7 +32,8 @@
         "email": "carlos@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "$",
-        "saldoInicial": 12512
+        "saldoInicial": 12512,
+        "_dadoDeBaja": false
     },
     {
         "id": "985739",
@@ -41,6 +44,55 @@
         "email": "magnus@gmail.com",
         "tipoCuenta": "CA",
         "moneda": "U$S",
-        "saldoInicial": 10530
+        "saldoInicial": 21030,
+        "_dadoDeBaja": false
+    },
+    {
+        "id": "718156",
+        "nombre": "Mauro",
+        "apellido": "Carlsen",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "25476879",
+        "email": "magnus@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "U$S",
+        "saldoInicial": "10500",
+        "_dadoDeBaja": false
+    },
+    {
+        "id": "004143",
+        "nombre": "Mauro",
+        "apellido": "Carlsen",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "25476879",
+        "email": "magnus@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "U$S",
+        "saldoInicial": "10500",
+        "_dadoDeBaja": false
+    },
+    {
+        "id": "792077",
+        "nombre": "Mauro",
+        "apellido": "Carlsen",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "25476879",
+        "email": "magnus@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "U$S",
+        "saldoInicial": "10500",
+        "_dadoDeBaja": false
+    },
+    {
+        "id": "462936",
+        "nombre": "Mauro",
+        "apellido": "Carlsen",
+        "tipoDocumento": "DNI",
+        "nroDocumento": "40879678",
+        "email": "asd@gmail.com",
+        "tipoCuenta": "CA",
+        "moneda": "U$S",
+        "saldoInicial": 2450,
+        "_dadoDeBaja": true
     }
 ]

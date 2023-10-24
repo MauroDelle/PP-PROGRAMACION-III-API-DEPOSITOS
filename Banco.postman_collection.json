@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "6a9d05d9-abd5-47ea-99e0-cc5343afbfe5",
+		"name": "Banco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29666066"
+	},
+	"item": [
+		{
+			"name": "CuentaAlta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Magnus",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Carlsen",
+							"type": "text"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "DNI",
+							"type": "text"
+						},
+						{
+							"key": "nroDocumento",
+							"value": "25476879",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "magnus@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "CA",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "U$S",
+							"type": "text"
+						},
+						{
+							"key": "saldoInicial",
+							"value": "10500",
+							"type": "text"
+						},
+						{
+							"key": "imagen",
+							"type": "file",
+							"src": "/C:/Users/delle/OneDrive/Escritorio/images.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Alta",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultarCuenta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipoCuenta",
+							"value": "CA",
+							"type": "text"
+						},
+						{
+							"key": "nroCuenta",
+							"value": "564035",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Consulta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Consulta",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DepositoCuenta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipoCuenta",
+							"value": "CA",
+							"type": "text"
+						},
+						{
+							"key": "nroCuenta",
+							"value": "564035",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "$",
+							"type": "text"
+						},
+						{
+							"key": "importe",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "imagen",
+							"type": "file",
+							"src": "/C:/Users/delle/OneDrive/Escritorio/download.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Deposito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Deposito",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaMoviemientos-A",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Movimientos&tipoCuenta=CA&moneda=$&fecha=2023-10-17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Movimientos",
+							"value": null
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "CA"
+						},
+						{
+							"key": "moneda",
+							"value": "$"
+						},
+						{
+							"key": "fecha",
+							"value": "2023-10-17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaMovimientos-B",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Movimientos&idCuenta=985739",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Movimientos",
+							"value": null
+						},
+						{
+							"key": "idCuenta",
+							"value": "985739"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaMovimientos-C",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Movimientos&fechaInicio=2023-10-17&fechaFin=2023-10-18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Movimientos",
+							"value": null
+						},
+						{
+							"key": "fechaInicio",
+							"value": "2023-10-17"
+						},
+						{
+							"key": "fechaFin",
+							"value": "2023-10-18"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaMovimientos-D",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Movimientos&tipoCuenta=CA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Movimientos",
+							"value": null
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "CA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaMovimientos-E",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Movimientos&moneda=$",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Movimientos",
+							"value": null
+						},
+						{
+							"key": "moneda",
+							"value": "$"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarCuenta.php",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tipoCuenta",
+							"value": "CA",
+							"type": "text"
+						},
+						{
+							"key": "nroCuenta",
+							"value": "070825",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Pepito",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Perez",
+							"type": "text"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "DNI",
+							"type": "text"
+						},
+						{
+							"key": "nroDocumento",
+							"value": "40879678",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "carlos@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "$",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Modificar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Modificar",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetiroCuenta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipoCuenta",
+							"value": "CA",
+							"type": "text"
+						},
+						{
+							"key": "nroCuenta",
+							"value": "564035",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "$",
+							"type": "text"
+						},
+						{
+							"key": "importe",
+							"value": "1700",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Extraccion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Extraccion",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjusteCuenta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipoTransaccion",
+							"value": "deposito",
+							"type": "text"
+						},
+						{
+							"key": "idTransaccion",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "ajusteMonto",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "motivo",
+							"value": "modificando saldo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP-PROGRAMACION-III/?Ajuste",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP-PROGRAMACION-III",
+						""
+					],
+					"query": [
+						{
+							"key": "Ajuste",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

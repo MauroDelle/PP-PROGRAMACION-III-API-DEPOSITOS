@@ -26,5 +26,12 @@
         "_idDepositoRetiro": "3",
         "_motivo": "modificando saldo",
         "_monto": "10"
+    },
+    {
+        "_idAjuste": 5,
+        "_tipoTransaccion": "retiro",
+        "_idDepositoRetiro": "6",
+        "_motivo": "modificando saldo",
+        "_monto": "50"
     }
 ]

@@ -259,23 +259,25 @@ class Deposito
 
     public static function calcularTotalPorTipoCuentaYMoneda($tipoCuenta,$moneda,$fecha = null)
     {
+        var_dump($tipoCuenta);
+        var_dump($fecha);
         // si no tengo fecha, calculo la del dia anterior
         if($fecha === null)
         {
             $fecha = date('Y-m-d', strtotime('yesterday'));
         }
-
+        
         $depositos = self::LeerDepositoJSON();
-
+        
         //inicializo el total;
         $total = 0;
-
-
+        
+        
         foreach($depositos as $deposito)
         {
-            $fechaDepositoJson = $deposito->_fecha;
-            $fechaDepositoJson = DateTime::createFromFormat('Y-m-d H:i:s', $fechaDepositoJson);
-            $fechaDepositoJson = $fechaDepositoJson->format('Y-m-d');
+            $fechaDepositoJson = $deposito->getFecha(); 
+            $fechaDeposito = new DateTime($fechaDepositoJson);
+            $fechaDepositoFormat = $fechaDeposito->format('Y-m-d');
 
             if($fechaDepositoJson === $fecha && $deposito->_tipoCuenta === $tipoCuenta && $deposito->_moneda === $moneda)
             {
@@ -361,6 +363,10 @@ class Deposito
 
         return $depList;
     }
+
+    
+
+
 
 
     #endregion

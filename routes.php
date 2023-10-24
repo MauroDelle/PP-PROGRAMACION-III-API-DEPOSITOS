@@ -17,7 +17,7 @@ return [
     ],
     'DELETE' =>
     [
-        'BorrarVenta' => 'BorrarVenta.php',
+        'Borrar' => 'Clases/BorrarCuenta.php',
     ],
 ];
 

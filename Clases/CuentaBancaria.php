@@ -15,11 +15,39 @@ class CuentaBancaria
     public $tipoCuenta;
     public $moneda;
     public $saldoInicial;
+
+    public $_dadoDeBaja;
+
+
+        // Agregar una propiedad para rastrear si la cuenta ha sido eliminada
+        private $eliminada = false;
     
     #endregion
 
+        // Método para establecer el estado de eliminación
+        public function setEliminada($eliminada)
+        {
+            $this->eliminada = $eliminada;
+        }
+
+            // Método para obtener el estado de eliminación
+    public function isEliminada()
+    {
+        return $this->eliminada;
+    }
+
+    public function getDadoDeBaja()
+    {
+        return $this->_dadoDeBaja;
+    }
+
+    public function setDadoDeBaja($valor)
+    {
+        $this->_dadoDeBaja = $valor;
+    }
+
     #region CONSTRUCT
-    public function __construct($id,$nombre, $apellido, $tipoDocumento, $nroDocumento, $email, $tipoCuenta, $moneda, $saldoInicial = 0)
+    public function __construct($id,$nombre, $apellido, $tipoDocumento, $nroDocumento, $email, $tipoCuenta, $moneda, $saldoInicial = 0, $dadoDeBaja = false)
     {
         $this->setNombre($nombre);
         $this->setId($id);
@@ -30,6 +58,7 @@ class CuentaBancaria
         $this->setTipoCuenta($tipoCuenta);
         $this->setMoneda($moneda);
         $this->setSaldoInicial($saldoInicial);
+        $this->_dadoDeBaja = $dadoDeBaja;
     }
     #endregion
 
@@ -88,7 +117,6 @@ class CuentaBancaria
         }
     }
 
-
     public function setNroDocumento($nroDocumento)
     {
         if(is_numeric($nroDocumento) && $nroDocumento > 0 )
@@ -119,7 +147,7 @@ class CuentaBancaria
 
     public function setTipoCuenta($tipoCuenta)
     {
-        if($tipoCuenta === 'CA' || $tipoCuenta === 'CC')
+        if($tipoCuenta === 'CA' || $tipoCuenta === 'CC' || $tipoCuenta === 'CA$')
         {
             $this->tipoCuenta = $tipoCuenta;
         }
@@ -210,6 +238,16 @@ class CuentaBancaria
     #endregion
     
     #region MÉTODOS
+
+    /**
+     * The function "obtenerCuentaPorId" retrieves a specific account object from a JSON file based on its
+     * ID.
+     * 
+     * @param //idCuenta The parameter `idCuenta` is the ID of the account that you want to retrieve.
+     * 
+     * @return //an object of type "Cuenta" if a matching account ID is found in the array of accounts. If no
+     * matching account is found, it returns null.
+     */
     public static function obtenerCuentaPorId($idCuenta)
     {
         $cuentas = self::LeerJSON();
@@ -224,15 +262,41 @@ class CuentaBancaria
         return null;
     }
 
-    public function Equals($obj): bool {
+    /**
+     * The function checks if two objects of the class "CuentaBancaria" have the same values for the
+     * "nombre", "apellido", and "tipoCuenta" properties.
+     * 
+     * @param //obj The parameter `` is an object of the class `CuentaBancaria`.
+     * 
+     * @return //bool a boolean value. If the conditions inside the if statement are met, it will return
+     * true. Otherwise, it will return false.
+     */
+    public function Equals($obj): bool 
+    {
         if (get_class($obj) == "CuentaBancaria" &&
-            $obj->nombre === $this->nombre &&
-            $obj->apellido === $this->apellido &&
+            //$obj->nombre === $this->nombre &&
+            $obj->id === $this->id &&
             $obj->tipoCuenta === $this->tipoCuenta) {
             return true;
         }
         return false;
     }
+
+    /**
+     * The function "Buscar" searches for a specific account in an array based on the given criteria (name,
+     * last name, and account type) and returns a message indicating if a matching account was found or
+     * not.
+     * 
+     * @param //array An array of objects representing accounts.
+     * @param //nombre The parameter "nombre" is a string that represents the name of the account you want to
+     * search for.
+     * @param //apellido The parameter "apellido" represents the last name of the account holder.
+     * @param //tipoCuenta The parameter "tipoCuenta" represents the type of account.
+     * 
+     * @return //a message indicating whether a matching account was found based on the specified criteria
+     * (name, last name, and account type) in the given array. The message will vary depending on which
+     * criteria were matched.
+     */
     public static function Buscar($array,$nombre,$apellido,$tipoCuenta)
     {
         $message = "";
@@ -272,6 +336,15 @@ class CuentaBancaria
 
         return $message;
     }
+
+    /**
+     * The function "BuscarEnArray" checks if a given account exists in an array of accounts.
+     * 
+     * @param //arrayCuentas The parameter  is an array that contains bank account objects.
+     * 
+     * @return //bool a boolean value. It returns true if the account being searched for is found in the
+     * array, and false if it is not found or if the array is empty.
+     */
     public function BuscarEnArray($arrayCuentas): bool {
         // Primero verifico si el array no está vacío;
         if (!empty($arrayCuentas)) {
@@ -290,6 +363,19 @@ class CuentaBancaria
         return false;
     }
 
+    /**
+     * The function "ActualizarArray" updates an array of bank accounts based on the provided account,
+     * action, and image.
+     * 
+     * @param //cuenta The parameter "cuenta" is an object of a class that represents a bank account. It
+     * contains information such as the account number, account holder name, and initial balance.
+     * @param //action The "action" parameter is a string that specifies the action to be performed on the
+     * account. It can have two possible values: "add" or "sub".
+     * @param //imagen The parameter "imagen" is a variable that represents an image. It is used in the
+     * function to save the image associated with the account.
+     * 
+     * @return string a string message.
+     */
     public static function ActualizarArray($cuenta,$action,$imagen):string
     {
 
@@ -336,6 +422,12 @@ class CuentaBancaria
         return $message;
     }
 
+    /**
+     * The function "guardarImagen" saves an image file to a specific directory with a unique name based on
+     * the account ID and account type.
+     * 
+     * @param //imagen The parameter "imagen" is a file that represents an image.
+     */
     public function guardarImagen($imagen) {
 
         if($imagen != NULL)
@@ -356,6 +448,17 @@ class CuentaBancaria
 
     #region MÉTODO-PUNTO-2
 
+    /**
+     * The function "consultarCuenta" in PHP checks if a given account type and number combination exists
+     * in a JSON file and returns the currency and balance if it exists, or an error message if it doesn't.
+     * 
+     * @param //_tipoCuenta The type of account (e.g. "savings", "checking", "credit").
+     * @param //_nroCuenta The account number that you want to search for.
+     * 
+     * @return //either the account balance and currency if the account type and number match, or an error
+     * message indicating either an incorrect account type or a non-existent combination of account type
+     * and number.
+     */
     public static function consultarCuenta($_tipoCuenta,$_nroCuenta)
     {
         //primero obtengo las cuentas bancarias desde el json
@@ -399,7 +502,6 @@ class CuentaBancaria
         }
     }
 
-
     #endregion
 
     #region METODO-PUNTO-5
@@ -439,11 +541,116 @@ class CuentaBancaria
     }
 
 
+    // Método para buscar depósitos por ID en deposito.json
+    public function tieneDepositoPorId($id) {
+        $depositos = Deposito::LeerDepositoJSON(); 
+        foreach ($depositos as $deposito) {
+            if ($deposito->getId() == $id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+        // Método para buscar retiros por ID en retiro.json
+        public function tieneRetiroPorId($id) {
+            $retiros = Retiro::LeerExtraccionesJSON(); 
+    
+            foreach ($retiros as $retiro) {
+                if ($retiro->getId() == $id) {
+                    return true;
+                }
+            }
+    
+            return false;
+        }
+
+
+        public static function tieneDepositoyRetiro($id)
+        {
+            $depositos = Deposito::LeerDepositoJSON();
+            $retiros = Retiro::LeerExtraccionesJSON();
+
+            $depositosUsuario = [];
+            $retirosUsuario = [];
+    
+            foreach ($depositos as $deposito) {
+                if ($deposito->getIdCuenta() == $id) {
+                    $depositosUsuario[] = $deposito;
+                }
+            }
+    
+            foreach ($retiros as $retiro) {
+                if ($retiro->getId() == $id) {
+                    $retirosUsuario[] = $retiro;
+                }
+            }
+    
+            return ['depositos' => $depositosUsuario, 'retiros' => $retirosUsuario];
+        }
+
+
+
+    public static function eliminarUsuarioYMoverFoto($tipoCuenta, $nroCuenta)
+    {   
+        $cuentas = self::LeerJSON();
+
+        //ahora que tengo las cuentas busco por tipo y numero
+        foreach($cuentas as $key => $cuenta)
+        {
+            if ($cuenta->tipoCuenta === $tipoCuenta && $cuenta->id === $nroCuenta)
+            {
+                $nombreFoto = $cuenta->getId() . $tipoCuenta . '.jpg'; // Nombre de la foto
+
+                $rutaFotoOriginal = 'ImagenesDeCuentas/2023/' . $nombreFoto;
+                $rutaCarpetaRespaldo = 'ImagenesBackupCuentas2023/';
+
+
+                if (!is_dir($rutaCarpetaRespaldo)) {
+                    mkdir($rutaCarpetaRespaldo, 0777, true);
+                }             
+
+                 // Mover la foto a la carpeta de respaldo
+                 if (rename($rutaFotoOriginal, $rutaCarpetaRespaldo . $nombreFoto))
+                 {
+
+                $cuentas[$key]->setDadoDeBaja(true); // Configurar _dadoDeBaja en true
+
+                // Guardar los cambios en el archivo JSON
+                self::GuardarEnJSON($cuentas);
+                    return 'Cuenta eliminada y foto respaldada con éxito.';
+                 }
+                 else {
+                    return 'Error al mover la foto a la carpeta de respaldo.';
+                }
+            }
+
+
+        }
+
+        return 'Cuenta no encontrada.';
+    }
+
+
+
+
 
 
     #endregion
 
     #region JSON
+
+
+    /**
+     * The function "LeerJSON" reads a JSON file containing bank account information and returns an array
+     * of bank account objects.
+     * 
+     * @param //filename The filename parameter is optional and specifies the name of the JSON file to read.
+     * If no filename is provided, it defaults to "banco.json".
+     * 
+     * @return array an array of CuentaBancaria objects.
+     */
     public static function LeerJSON($filename = "banco.json"): array
     {
         // Creo un array vacío para almacenar las cuentas bancarias
@@ -474,7 +681,8 @@ class CuentaBancaria
                             $cuenta["email"],
                             $cuenta["tipoCuenta"],
                             $cuenta["moneda"],
-                            $cuenta["saldoInicial"]
+                            $cuenta["saldoInicial"],
+                            $cuenta["_dadoDeBaja"]
                         ));
                     }
                 }

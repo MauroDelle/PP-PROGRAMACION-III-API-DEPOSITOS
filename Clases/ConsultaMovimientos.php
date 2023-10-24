@@ -1,5 +1,6 @@
 <?php
 include_once 'Deposito.php';
+include_once 'CuentaBancaria.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['tipoCuenta']) && isset($_GET['moneda']))
@@ -14,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             $fecha = null; // Si no se proporciona una fecha, se calculará para el día anterior
         }
-
         $totalDepositado = Deposito::calcularTotalPorTipoCuentaYMoneda($tipoCuenta, $moneda,$fecha);
+        
 
         // Muestra el resultado
         echo "Total depositado por tipo de cuenta $tipoCuenta y moneda $moneda en la fecha $fecha: $totalDepositado";
@@ -24,9 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $idCuenta = $_GET['idCuenta'];
 
         $listadoDepositado = Deposito::listarDepositosPorUsuario($idCuenta);
+        $segundoListado = CuentaBancaria::tieneDepositoyRetiro($idCuenta);
 
-        echo "Los depositos de la cuenta: $idCuenta son:";
-        var_dump($listadoDepositado);
+        echo "Los depositos y retiros de la cuenta: $idCuenta son:";
+        var_dump($segundoListado);
     }
     else if(isset($_GET["fechaInicio"]) && isset($_GET["fechaFin"]))
     {
@@ -53,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         var_dump($listadoPorMoneda);
     }
+    
     
 } else {
     echo "Método de solicitud incorrecto. Debe ser una solicitud GET.";

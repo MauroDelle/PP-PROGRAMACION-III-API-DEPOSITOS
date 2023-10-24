@@ -3,40 +3,48 @@
         "_id": 1,
         "_fecha": "2023-10-18",
         "_monto": "60",
+        "_moneda": "$",
         "_tipoCuenta": "CA",
-        "_nroCuenta": "564035",
-        "_moneda": "$"
+        "_nroCuenta": "564035"
     },
     {
         "_id": 2,
         "_fecha": "2023-10-18",
         "_monto": "60",
+        "_moneda": "$",
         "_tipoCuenta": "CA",
-        "_nroCuenta": "564035",
-        "_moneda": "$"
+        "_nroCuenta": "564035"
     },
     {
         "_id": 3,
         "_fecha": "2023-10-18",
         "_monto": "60",
+        "_moneda": "$",
         "_tipoCuenta": "CA",
-        "_nroCuenta": "564035",
-        "_moneda": "$"
+        "_nroCuenta": "564035"
     },
     {
         "_id": 4,
         "_fecha": "2023-10-18",
         "_monto": "60",
+        "_moneda": "$",
         "_tipoCuenta": "CA",
-        "_nroCuenta": "564035",
-        "_moneda": "$"
+        "_nroCuenta": "564035"
     },
     {
         "_id": 5,
         "_fecha": "2023-10-18",
         "_monto": "1700",
+        "_moneda": "$",
         "_tipoCuenta": "CA",
-        "_nroCuenta": "564035",
-        "_moneda": "$"
+        "_nroCuenta": "564035"
+    },
+    {
+        "_id": 6,
+        "_fecha": "2023-10-24",
+        "_monto": "100",
+        "_moneda": "U$S",
+        "_tipoCuenta": "CA",
+        "_nroCuenta": "462936"
     }
 ]

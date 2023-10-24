@@ -14,7 +14,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $importe = floatval($_POST['importe']); // Convertir el importe a tipo float
 
         $resultado = Deposito::Depositar($tipoCuenta,$nroCuenta,$moneda,$importe,$imagen);
-
         
     }
     else {
